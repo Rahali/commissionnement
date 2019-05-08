@@ -52,14 +52,13 @@ public class RegleService {
 
                 if (duration1.getCommercialrelationDurationDto()!=null){
                     commercialrelationDuration.setGt(duration1.getCommercialrelationDurationDto().getGt());
+                    commercialrelationDurations.add(commercialrelationDuration);
                 }
                 if (duration1.getMissionDuration()!=null) {
                     missionDuration.setGt(duration1.getMissionDuration().getGt());
+                    missionDurations.add(missionDuration);
                 }
-
-                commercialrelationDurations.add(commercialrelationDuration);
-                missionDurations.add(missionDuration);
-            }
+           }
             restrictions.setMissionDurationList(missionDurations);
             restrictions.setCommercialrelationDurationList(commercialrelationDurations);
         }
@@ -93,18 +92,18 @@ public class RegleService {
     private List<OrDto> getOrDtoFromDurationMissions(List<MissionDuration> durations, List<CommercialrelationDuration> commercialrelationDurationList) {
         List<OrDto> orDtos = new ArrayList<>();
 
-        DurationDto durationDto = new DurationDto();
         for (MissionDuration missionDuration : durations) {
             OrDto orDto = new OrDto();
+            DurationDto durationDto = new DurationDto();
             durationDto.setGt(missionDuration.getGt());
             orDto.setMissionDuration(durationDto);
             orDtos.add(orDto);
         }
         for (CommercialrelationDuration cd : commercialrelationDurationList) {
-
+            DurationDto durationDto = new DurationDto();
             OrDto orDto = new OrDto();
             durationDto.setGt(cd.getGt());
-            orDto.setMissionDuration(durationDto);
+            orDto.setCommercialrelationDurationDto(durationDto);
             orDtos.add(orDto);
         }
 
@@ -121,15 +120,16 @@ public class RegleService {
 
     public FeesDto getRulePercenFromRestriction(CommandDto command, String clientcountry, String freelancerCountry) {
         FeesDto feesDto = new FeesDto();
+        List<FeesDto> feesDtoList=new ArrayList<>();
         feesDto.setFees("10");
+        feesDto.setReason("Default");
+        feesDtoList.add(feesDto);
 
         List<Rule> rules = regleRepository.findAll();
 
         for (Rule r : rules) {
-            // List<Restrictions> rests = r.getRestrictionsList();
             Restrictions rest = r.getRestrictionsList();
             boolean trouve = false;
-            //for (Restrictions rest : rests) {
             List<MissionDuration> missionDurations = rest.getMissionDurationList();
             for (MissionDuration missionDuration : missionDurations) {
                 if (Integer.getInteger(missionDuration.getGt()) < Integer.getInteger(command.getMissionDto().getGt()) ||
@@ -138,7 +138,6 @@ public class RegleService {
                     break;
                 }
 
-                //}
                 if (rest.getFreelancerLocation().equalsIgnoreCase(freelancerCountry) && rest.getClientLocation().equalsIgnoreCase(clientcountry) && trouve) {
                     trouve = true;
                 } else {
