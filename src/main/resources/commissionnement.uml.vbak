@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="44.07738095238095" y="372.0">com.malt.price.commissionnement.models.FreeLancer</node>
+    <node x="0.0" y="160.0">com.malt.price.commissionnement.models.Mission</node>
+    <node x="44.00595238095232" y="0.0">com.malt.price.commissionnement.models.Client</node>
+    <node x="40.9702380952381" y="532.0">com.malt.price.commissionnement.models.Commercialrelation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.malt.price.commissionnement.models.Commercialrelation" target="com.malt.price.commissionnement.models.FreeLancer">
+      <point x="0.0" y="-81.0" />
+      <point x="157.4702380952381" y="507.0" />
+      <point x="160.57738095238096" y="507.0" />
+      <point x="0.0" y="55.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.Mission" target="com.malt.price.commissionnement.models.Client">
+      <point x="-56.25000000000003" y="-81.0" />
+      <point x="56.24999999999997" y="135.0" />
+      <point x="82.83928571428565" y="135.0" />
+      <point x="-77.66666666666667" y="55.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.Client" target="com.malt.price.commissionnement.models.Mission">
+      <point x="1.4210854715202004E-14" y="55.0" />
+      <point x="160.50595238095235" y="135.0" />
+      <point x="168.74999999999997" y="135.0" />
+      <point x="56.24999999999997" y="-81.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.Commercialrelation" target="com.malt.price.commissionnement.models.Client">
+      <point x="77.66666666666669" y="-81.0" />
+      <point x="235.1369047619048" y="507.0" />
+      <point x="287.57738095238096" y="507.0" />
+      <point x="287.57738095238096" y="135.0" />
+      <point x="238.172619047619" y="135.0" />
+      <point x="77.66666666666669" y="55.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.Mission" target="com.malt.price.commissionnement.models.FreeLancer">
+      <point x="74.99999999999997" y="81.0" />
+      <point x="187.49999999999997" y="347.0" />
+      <point x="218.82738095238096" y="347.0" />
+      <point x="58.25" y="-55.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.FreeLancer" target="com.malt.price.commissionnement.models.Mission">
+      <point x="-58.25" y="-55.0" />
+      <point x="102.32738095238095" y="347.0" />
+      <point x="112.5" y="347.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="com.malt.price.commissionnement.models.Commercialrelation" target="com.malt.price.commissionnement.models.Mission">
+      <point x="-77.66666666666669" y="-81.0" />
+      <point x="79.80357142857142" y="507.0" />
+      <point x="33.577380952380935" y="507.0" />
+      <point x="33.577380952380935" y="347.0" />
+      <point x="37.5" y="347.0" />
+      <point x="-75.0" y="81.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="236.5" y="386.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
