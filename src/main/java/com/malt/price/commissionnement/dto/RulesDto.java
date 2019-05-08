@@ -20,6 +20,6 @@ public class RulesDto implements Serializable {
     private RateDto rateDto;
 
     @JsonProperty("restrictions")
-    private List<RestrictionsDto> restrictionsDto;
+    private RestrictionsDto restrictionsDto;
 
 }

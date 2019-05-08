@@ -18,7 +18,10 @@ public class Restrictions implements Serializable {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<MissionDuration> duration;
+    private List<MissionDuration> missionDurationList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<CommercialrelationDuration> commercialrelationDurationList;
 
     private String clientLocation;
 

@@ -12,7 +12,7 @@ public class IpStackService {
     public String getCodeCountry(String ip) {
 
         String codeCountry = null;
-        String ipStackUrl = "http://api.ipstack.com/195.101.165.20?access_key=6acd814efa092cb6832d18d8941ce83d";
+        String ipStackUrl = "http://api.ipstack.com/"+ip+"?access_key=6acd814efa092cb6832d18d8941ce83d";
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<CountryDto> response = restTemplate.getForEntity(ipStackUrl, CountryDto.class);

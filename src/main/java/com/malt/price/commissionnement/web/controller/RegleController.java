@@ -16,7 +16,9 @@ public class RegleController {
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public RulesDto getRegleslit() {
+        regleService.getAll();
         return new RulesDto();
+
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

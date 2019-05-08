@@ -16,8 +16,8 @@ public class Rule {
 
     private Rate rate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Restrictions> restrictionsList;
+    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
+    private Restrictions restrictionsList;
 
 
 }
