@@ -130,6 +130,7 @@ public class RegleService {
         List<Rule> rules = regleRepository.findAll();
 
         for (Rule r : rules) {
+            feesDto = new FeesDto();
             Restrictions rest = r.getRestrictionsList();
             boolean trouve = false;
             List<MissionDuration> missionDurations = rest.getMissionDurationList();
@@ -141,7 +142,6 @@ public class RegleService {
                 if (Integer.parseInt(missionDuration.getGt()) < Integer.parseInt(command.getMissionDto().getLength()) ||
                         Integer.parseInt(missionDuration.getGt()) < (int) (numOfMonthBetweenTwoDate)) {
                     trouve = true;
-                    break;
                 }
 
                 if (rest.getFreelancerLocation().equalsIgnoreCase(freelancerCountry) && rest.getClientLocation().equalsIgnoreCase(clientcountry) && trouve) {
@@ -154,9 +154,15 @@ public class RegleService {
             if (trouve) {
                 feesDto.setFees(r.getRate().getPercent());
                 feesDto.setReason(r.getName());
+                feesDtoList.add(feesDto);
             }
         }
-        return feesDto;
+        FeesDto feesDto2 = feesDtoList
+                .stream()
+                .min(Comparator.comparing(FeesDto::getFees))
+                .orElseThrow(NoSuchElementException::new);
+
+        return feesDto2;
 
     }
 
