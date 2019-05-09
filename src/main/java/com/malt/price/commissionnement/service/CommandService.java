@@ -9,8 +9,6 @@ import org.springframework.stereotype.*;
 
 public class CommandService {
     Logger logger = LoggerFactory.getLogger(CommandService.class);
-   /* @Autowired
-    private CommandRepository commandRepository;*/
 
     @Autowired
     private IpStackService ipStackService;

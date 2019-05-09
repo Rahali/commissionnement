@@ -75,7 +75,7 @@ public class RegleService {
     private RestrictionsDto getRestrictionsDtoFromRestrictions(Restrictions restrictionsList) {
         List<RestrictionsDto> restrictionsDtoList = new ArrayList<>();
 
-        //   for (Restrictions rest : restrictionsList) {
+
         RestrictionsDto restrictionsDto = new RestrictionsDto();
         LocationDto locationDto = new LocationDto();
         if (restrictionsList != null) {

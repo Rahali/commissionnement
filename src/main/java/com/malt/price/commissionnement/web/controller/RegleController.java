@@ -33,7 +33,7 @@ public class RegleController {
     @ApiOperation(value = "Ajouter une Regle et des restrictions")
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createRegle(@RequestBody RulesDto regle_) {
-        logger.info(regle_.toString());
+        logger.info(regle_.getName());
         RulesDto regle = regleService.createRegle(regle_);
         if (regle == null) {
             return  ResponseEntity.noContent().build();

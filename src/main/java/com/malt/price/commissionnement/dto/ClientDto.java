@@ -9,4 +9,5 @@ import lombok.*;
 public class ClientDto implements Serializable {
     @JsonProperty("ip")
     private String ip;
+
 }
