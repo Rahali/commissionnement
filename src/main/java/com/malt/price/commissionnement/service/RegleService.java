@@ -3,6 +3,8 @@ package com.malt.price.commissionnement.service;
 import com.malt.price.commissionnement.dto.*;
 import com.malt.price.commissionnement.pojo.*;
 import com.malt.price.commissionnement.repository.*;
+import java.time.*;
+import java.time.format.*;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -50,15 +52,15 @@ public class RegleService {
                 MissionDuration missionDuration = new MissionDuration();
                 CommercialrelationDuration commercialrelationDuration = new CommercialrelationDuration();
 
-                if (duration1.getCommercialrelationDurationDto()!=null){
+                if (duration1.getCommercialrelationDurationDto() != null) {
                     commercialrelationDuration.setGt(duration1.getCommercialrelationDurationDto().getGt());
                     commercialrelationDurations.add(commercialrelationDuration);
                 }
-                if (duration1.getMissionDuration()!=null) {
+                if (duration1.getMissionDuration() != null) {
                     missionDuration.setGt(duration1.getMissionDuration().getGt());
                     missionDurations.add(missionDuration);
                 }
-           }
+            }
             restrictions.setMissionDurationList(missionDurations);
             restrictions.setCommercialrelationDurationList(commercialrelationDurations);
         }
@@ -120,7 +122,7 @@ public class RegleService {
 
     public FeesDto getRulePercenFromRestriction(CommandDto command, String clientcountry, String freelancerCountry) {
         FeesDto feesDto = new FeesDto();
-        List<FeesDto> feesDtoList=new ArrayList<>();
+        List<FeesDto> feesDtoList = new ArrayList<>();
         feesDto.setFees("10");
         feesDto.setReason("Default");
         feesDtoList.add(feesDto);
@@ -131,9 +133,13 @@ public class RegleService {
             Restrictions rest = r.getRestrictionsList();
             boolean trouve = false;
             List<MissionDuration> missionDurations = rest.getMissionDurationList();
+
+            long numOfMonthBetweenTwoDate =
+                    dateEntreMission(command.getCommercialrelationDto().getFirstmission(), command.getCommercialrelationDto().getLastMission());
+
             for (MissionDuration missionDuration : missionDurations) {
-                if (Integer.getInteger(missionDuration.getGt()) < Integer.getInteger(command.getMissionDto().getGt()) ||
-                        Integer.getInteger(missionDuration.getGt()) < Integer.getInteger(command.getCommercialrelationDto().getGt())) {
+                if (Integer.parseInt(missionDuration.getGt()) < Integer.parseInt(command.getMissionDto().getLength()) ||
+                        Integer.parseInt(missionDuration.getGt()) < (int) (numOfMonthBetweenTwoDate)) {
                     trouve = true;
                     break;
                 }
@@ -152,6 +158,19 @@ public class RegleService {
         }
         return feesDto;
 
+    }
+
+    private long dateEntreMission(String firstMission_, String lastMission_) {
+
+        OffsetDateTime firstMission = OffsetDateTime.parse(firstMission_,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX"));
+        OffsetDateTime lastMission = OffsetDateTime.parse(lastMission_,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX"));
+        Period diff2 =
+                Period.between(firstMission.toLocalDate().withDayOfMonth(1),
+                        lastMission.toLocalDate().withDayOfMonth(1));
+
+        return diff2.getMonths();
     }
 
     public List<RulesDto> getAll() {
