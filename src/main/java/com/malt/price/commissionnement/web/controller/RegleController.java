@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value="Regle et les restrictions")
+@Api(value="Regles et les restrictions")
 @RestController
 @RequestMapping(value = "/regle")
 public class RegleController {
@@ -18,12 +18,12 @@ public class RegleController {
     private RegleService regleService;
 
     @ApiOperation(value = "La liste des regles", response = List.class)
-    @ApiResponses(value = {
+    /*@ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
-    })
+    })*/
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity getRegleslit() {
